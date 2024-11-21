@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flipping card</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    section {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        background: #121321;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        perspective: 1000px;
+    }
+
+    section::before {
+        content: '';
+        border-radius: 50%;
+        position: absolute;
+        height: 240px;
+        width: 240px;
+        transform: translate(-150px, -100px);
+        background: linear-gradient(90deg, #9c27b0, #f3f5f5);
+    }
+
+    section::after {
+        content: '';
+        position: absolute;
+        height: 240px;
+        width: 240px;
+        border-radius: 50%;
+        background: linear-gradient(90deg, #9c27b0, #f3f5f5);
+        transform: translate(150px, 100px);
+        /*translate(xaxis,yaxis) this method moves the element from current position to the positions given on the axis*/
+    }
+
+    .container {
+        height: 200px;
+        width: 340px;
+        position: relative;
+        z-index: 100;
+        transition: 0.6;
+        transform-style: preserve-3d;
+
+    }
+
+    .container:hover {
+        transform: rotateY(180deg);
+    }
+
+    .container .card {
+        padding: 25px;
+        position: absolute;
+        backface-visibility: hidden;
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        /*(glassmorphism) */
+        border-radius: 25px;
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .font-face header,
+    .font-face .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .font-face header {
+        justify-content: space-between;
+    }
+
+    .font-face .logo img {
+        width: 40px;
+        margin-right: 10px;
+    }
+
+    h5 {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .font-face .chip {
+        width: 40px;
+        height: 35px;
+    }
+
+    .font-face .card-details {
+        display: flex;
+        margin-top: 40px;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    h6 {
+        font-size: 10px;
+        font-weight: 400;
+    }
+
+    h5.number {
+        font-size: 18px;
+        letter-spacing: 1px;
+
+    }
+
+    h5.name {
+        margin-top: 4px;
+    }
+
+    .card.back-face {
+        border: none;
+        padding: 15px 25px 25px 25px;
+        transform: rotateY(180deg);
+    }
+
+    .card.back-face h6 {
+        font-size: 7px;
+    }
+
+    .card.back-face .magnetic-strip {
+        position: absolute;
+        top: 40px;
+        left: 0%;
+        height: 45px;
+        width: 100%;
+        background-color: black;
+
+    }
+
+    .card.back-face .signature {
+        margin-top: 80px;
+        height: 40px;
+        width: 85%;
+        background: repeating-linear-gradient (#fff,
+                #fff 3px,
+                #efefef 0px, #efefef 9px);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-radius: 6px;
+    }
+
+    .signature i {
+        color: black;
+        font-size: 12px;
+        background-color: wheat;
+        margin-right: -30px;
+        padding: 4px 6px;
+        border-radius: 4px;
+        z-index: -1;
+    }
+
+    .card.back-face h5 {
+        font-size: 8px;
+        margin-top: 15px;
+    }
+</style>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="card font-face">
+                <header>
+                    <span class="logo">
+                        <img src="logo.png" alt="" />
+                        <h5>Master card</h5>
+                    </span>
+                    <img src="chip.png" alt="" class="chip">
+                </header>
+                <div class="card-details">
+                    <div class="name-number">
+                        <h6>Card Number</h6>
+                        <h5 class="number">7080 3030 5050 4064</h5>
+                        <h5 class="name">Parakh Gupta</h5>
+                    </div>
+                    <div class="valid-date">
+                        <h6>valid thru</h6>
+                        <h5>05/25</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card back-face">
+                <h6>For customer service call +9087 098 9087 or email at opalcard@gmail.com</h6>
+
+                <span class="magnetic-strip"></span>
+                <div class="signature">
+                    <i>005</i>
+                </div>
+                <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque ducimus laudantium nemo?
+                    Deleniti, alias illum.</h5>
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
